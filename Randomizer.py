@@ -1,11 +1,11 @@
 import os, subprocess, shutil, time, random, sys
-from Logger import Logger
-from ArgumentProcessor import ArgumentProcessor
+from .Logger import Logger
+from .ArgumentProcessor import ArgumentProcessor
 
 class Randomizer(ArgumentProcessor):
-    def __init__(self):
+    def __init__(self, logdir='.', logname='recent.log'):
         ArgumentProcessor.__init__(self)
-        self.logname = 'recent.log'
+        self.logname = os.path.join(logdir,logname)
         self.gamedir = ''
         self.seed = int(time.time())
         self.setArguments()
