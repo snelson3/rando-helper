@@ -4,12 +4,12 @@ from .ArgumentProcessor import ArgumentProcessor
 
 class Randomizer(ArgumentProcessor):
     def __init__(self, logdir='.', logname='recent.log'):
+        self.logname = os.path.join(logdir, logname)
         ArgumentProcessor.__init__(self)
-        self.logname = os.path.join(logdir,logname)
         self.gamedir = ''
         self.seed = int(time.time())
         self.setArguments()
-        self.log = Logger(os.path.abspath('./recent.log'), self.seed)
+        self.log = Logger(self.logname, self.seed)
     def resetSeed(self):
         random.seed(self.seed)
     def resetGit(self, files_to_remove=[], branch='master'):
